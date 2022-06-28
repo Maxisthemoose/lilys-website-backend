@@ -23,6 +23,10 @@ app.use(cors({
 //   next();
 // });
 
+app.get("/", async (req, res) => {
+  res.send("Hello!");
+})
+
 app.post("/email", async (req, res) => {
   // console.log()
   const data = req.body;
@@ -40,4 +44,4 @@ app.get("/products", async (req, res) => {
   return res.send(products);
 })
 
-app.listen(3000, () => console.log("Backend listening"));
+app.listen(process.env.PORT || 3001, () => console.log("Backend listening"));
