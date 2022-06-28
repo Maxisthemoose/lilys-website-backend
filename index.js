@@ -24,6 +24,7 @@ app.use(cors({
 // });
 
 app.post("/email", async (req, res) => {
+  // console.log()
   const data = req.body;
   sendEmail(data)
     .then(() => res.sendStatus(200))
@@ -34,8 +35,9 @@ app.post("/email", async (req, res) => {
 });
 
 app.get("/products", async (req, res) => {
+  console.log("hello");
   const products = require("./Products").products;
   return res.send(products);
 })
 
-app.listen(3001, () => console.log("Backend listening"));
+app.listen(3000, () => console.log("Backend listening"));
