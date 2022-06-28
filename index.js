@@ -9,17 +9,19 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // const origins = ["http://10.0.0.3:3000", "http://localhost:3000"];
-const origins = {
-  origin: ["http://10.0.0.3:3000", "http://localhost:3000"],
-  default: "http://10.0.0.3:3000",
-}
-
-app.all('*', function (req, res, next) {
-  const origin = origins.origin.find(v => v === req.header('origin').toLowerCase()) ? req.headers.origin : origins.default;
-  res.header("Access-Control-Allow-Origin", origin);
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// const origins = {
+//   origin: ["http://10.0.0.3:3000", "http://localhost:3000"],
+//   default: "http://10.0.0.3:3000",
+// }
+app.use(cors({
+  origin: "*",
+}))
+// app.all('*', function (req, res, next) {
+//   const origin = origins.origin.find(v => v === req.header('origin').toLowerCase()) ? req.headers.origin : origins.default;
+//   res.header("Access-Control-Allow-Origin", origin);
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 app.post("/email", async (req, res) => {
   const data = req.body;
