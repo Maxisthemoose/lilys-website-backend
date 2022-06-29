@@ -1,7 +1,7 @@
 module.exports.products = {
   prints: [
     {
-      image: "https://via.placeholder.com/400",
+      image: "./placeholder.jpg",
       quantity: "5",
       description: "Lorem Ipsum",
       name: "Lorem Ipsum",
@@ -11,7 +11,7 @@ module.exports.products = {
   clothing: [
 
   ],
-  "stickers": [
+  stickers: [
 
   ]
 }
