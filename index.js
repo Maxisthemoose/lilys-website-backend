@@ -31,16 +31,22 @@ app.post("/email", async (req, res) => {
 app.get("/products", async (req, res) => {
   
   const products = require("./Products").products;
-
-  for (let i = 0; i < products.length; i++) {
-    const base64 = fs.readFileSync(products[i].image).toString("base64");
-    console.log(base64);
-    products[i].image = base64;
+  const keys = Object.keys(products);
+  for (let k = 0; k < keys.length; k++) {
+    const data = products[keys[k]];
+    for (let i = 0; i < data.length; i++) {
+      try {
+        const img = data[i]?.image;
+        if (!img) continue;
+        const base64 = fs.readFileSync(data[i].image).toString("base64");
+        data[i].image = base64;
+      } catch (err) {
+        return res.sendStatus(500);
+      }
+    }
   }
 
-  console.log(products);
-
   return res.send(products);
-})
+});
 
 app.listen(process.env.PORT || 3001, () => console.log("Backend listening"));
