@@ -41,6 +41,7 @@ app.get("/products", async (req, res) => {
         const base64 = fs.readFileSync(data[i].image).toString("base64");
         data[i].image = base64;
       } catch (err) {
+        console.log(err);
         return res.sendStatus(500);
       }
     }
