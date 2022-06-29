@@ -36,6 +36,8 @@ app.get("/products", async (req, res) => {
     products[i].image = fs.readFileSync(products[i].image).toString("base64");
   }
 
+  console.log(products);
+
   return res.send(products);
 })
 
