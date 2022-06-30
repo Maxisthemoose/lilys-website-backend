@@ -17,7 +17,6 @@ app.get("/", async (req, res) => {
 })
 
 app.post("/email", async (req, res) => {
-  // console.log()
   const data = req.body;
   sendEmail(data)
     .then(() => res.sendStatus(200))
